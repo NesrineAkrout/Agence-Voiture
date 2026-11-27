@@ -10,12 +10,12 @@ import java.util.function.BiConsumer;
 public class Agence {
 
 	private String nom;
-	private ListVoiture vs;
+	private ListVoiture parking;
 	private Map<Client, ListVoiture> clientVoitureLoue;
 
 	public Agence(String nom) {
 		this.nom = nom;
-		vs = new ListVoiture();
+		parking = new ListVoiture();
 		clientVoitureLoue = new HashMap<>();
 	}
 
@@ -29,13 +29,13 @@ public class Agence {
 	
 	public void ajoutVoiture(Voiture v) throws VoitureException {
 		
-		vs.ajoutVoiture(v);
+		parking.ajoutVoiture(v);
 		
 	
 	}
 
 	public void suppVoiture(Voiture v) throws VoitureException {
-		vs.supprimeVoiture(v);
+	     parking.supprimeVoiture(v);
 	}
 
 	public void loueClientVoiture(Client cl, Voiture v) throws VoitureException {
@@ -60,7 +60,7 @@ public class Agence {
 		
 		List<Voiture> voitures = new ArrayList<>();
 		
-		for (Voiture v : vs.getVoitures()) {
+		for (Voiture v : parking.getVoitures()) {
 			if (c.estSatisfaitPar(v)) {
 				voitures.add(v);
 			}
@@ -108,7 +108,8 @@ public class Agence {
 	}
 
 	public Map<Client, ListVoiture> triCodeCroissant() {
-		Comparator<Client> c=(c1,c2)->{return c1.getCode()-c2.getCode();};
+		Comparator<Client> c=
+				(c1,c2)->{return c1.getCode()-c2.getCode();};
 		Map<Client, ListVoiture> map = new TreeMap<>(c);
 			map.putAll(clientVoitureLoue);
 		return map;

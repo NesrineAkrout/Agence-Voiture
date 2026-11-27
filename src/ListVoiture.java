@@ -10,7 +10,10 @@ public class ListVoiture{
 		{
 			if(voitures==null)
 				this.voitures=new ArrayList<Voiture>(voitures);
-			this.voitures=voitures;
+			else
+			{
+				this.voitures=voitures;
+				}
 		}
 		
 		public ListVoiture() {
@@ -25,14 +28,17 @@ public class ListVoiture{
 		public void setVoitures(List<Voiture> voitures) {
 			if(voitures==null)
 				this.voitures=new ArrayList<Voiture>(voitures);
-			this.voitures=voitures;
+			else
+			{
+				this.voitures=voitures;
+				}
 		}
 		public void ajoutVoiture(Voiture v) throws VoitureException
 		{
 			if(voitures.contains(v))
-				{
+				
 				throw new VoitureException("la voiture existe deja dans la liste");
-				}
+				
 				this.voitures.add(v);
 				
 		}
@@ -47,6 +53,7 @@ public class ListVoiture{
 			{throw new VoitureException("la voiture n'existe pas dans la liste");}
 				  
 		}
+		//groupe d ici
 		public Iterator<Voiture> iterateur()
 		{
 		   return voitures.iterator();
@@ -55,13 +62,15 @@ public class ListVoiture{
 		return voitures.size();
 		}
 		public void affiche(){
-			Iterator<Voiture> itr=this.voitures.iterator();
+			Iterator<Voiture> itr=iterateur();
 		    while(itr.hasNext())
 		    	System.out.println(itr.next());
 		    
 		    /*for(int i=0;i<size();i++)
 		    	System.out.println(voitures.get(i));
 		    
-		    for(Voiture v:this.voitures)
+		    for(Voiture v:voitures)
 		    	System.out.println(v);*/
+		    
+
 		}}	

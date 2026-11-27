@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Voiture {
 	
 	private int immariculation;
@@ -27,25 +29,21 @@ public class Voiture {
 	public void setPrixLocation(float prixLocation) {
 	 this.prixLocation = prixLocation;
 	}
+	
 	@Override
 	public int hashCode() {
-		//a ? b : c
-		//opérateur conditionnel : renvoie la valeur b ou c selon l'évaluation de l'expression a (si a alors b sinon c) : b et c doivent retourner le même type
-		int result = 17;
-		  result = 31 * result + (marque == null ? 0 : marque.hashCode());
-		  result = 31 * result + immariculation;
-		  return result;
+		return Objects.hash(immariculation, marque);
 	}
 	@Override
 	public boolean equals(Object obj) {
-	
-		if (obj instanceof Voiture)
-		{
-		  Voiture v=(Voiture)obj;
-		  return  immariculation==v.immariculation && marque.equals(v.marque);
-		}
-		return false;
-		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Voiture other = (Voiture) obj;
+		return immariculation == other.immariculation && Objects.equals(marque, other.marque);
 	}
 	@Override
 	public String toString(){

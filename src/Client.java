@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Client {
 	private int code;
 	private String nom;
@@ -33,29 +35,26 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	@Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + this.code;
-        return hash;
-    }
+	
+   
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this.getClass() != obj.getClass()) {
-            return false;
-        } 
-        Client other = (Client) obj;
-        
-            return (this.code == other.code);
-        
-        
-        
-    }
+	public int hashCode() {
+		return Objects.hash(code);
+	}
 
-    @Override
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return code == other.code;
+	}
+
+	@Override
     public String toString() {
         return "Client {" + "code=" + code + ", nom=" + nom + ", prenom=" + prenom + "}";
     }
